@@ -1,12 +1,11 @@
-# MIH DineOS — Restaurant Management System
+# MIH DineOS
 
-A polished, responsive marketing site for MIH DineOS with a reference-inspired hero, exact supplied brand logo, interactive product preview, feature highlights, pricing, and responsive navigation.
+Polished responsive landing page for the MIH DineOS Restaurant Management System.
 
-## Stack
-- Semantic HTML
-- Modern CSS
-- Vanilla JavaScript
-- Vercel static deployment
+- Reference-inspired responsive hero and product preview
+- MIH DineOS green/orange visual system
+- Responsive navbar, features, pricing, about and contact sections
+- Interactive demo/get-started modal
+- Vercel-ready static deployment
 
-## Brand asset
-The supplied MIH DineOS logo is preserved without recoloring or redesign.
+The current GitHub build is intentionally self-contained in `index.html` so it can be deployed as a static Vercel site without a framework build step.
