@@ -1,6 +1,6 @@
 # Phase 0 — Implementation Foundation
 
-Status: **in progress / foundation baseline only**  
+Status: **in progress — initial shell scaffolded; build not yet verified**  
 Branch: `phase-0/restrox-implementation-foundation`
 
 ## 1. Goal
@@ -12,7 +12,7 @@ Establish a safe, evidence-led starting point for building the restaurant-manage
 The current `main` branch is a small static Vercel landing page:
 - `index.html` contains the marketing site and its inline CSS/JavaScript.
 - `vercel.json` contains static-site security headers and clean URL configuration.
-- There is no application source tree, API server, database schema/migration, automated test suite, or confirmed production domain API contract in this repository.
+- There was no application source tree, API server, database schema/migration, automated test suite, or confirmed production domain API contract in the baseline repository.
 
 The RestroX inspection bundle is reference evidence, not application source code. It contains route/workflow inventories, focused observations, manifests, and evidence limits. The screenshot archive is a separate user-provided input. Neither archive should be treated as proof of backend semantics.
 
@@ -33,17 +33,17 @@ The RestroX inspection bundle is reference evidence, not application source code
 
 ## 4. Provisional architecture direction
 
-These are defaults for discussion and implementation planning, not claims about the original RestroX internals:
+These defaults are being used only for the isolated shell, not asserted as original RestroX internals:
 
-- **Web application:** TypeScript React application with a responsive component system, route-level loading/error/empty states, keyboard-accessible controls, and tests.
+- **Web application:** React + TypeScript + Vite, with responsive layout and explicit demo-only states.
 - **Application API:** typed request/response contracts, server-side validation, consistent error shapes, pagination, idempotency for mutation endpoints, and explicit authorization checks.
 - **Persistence:** relational database with versioned migrations, foreign keys, audit fields, and documented transaction boundaries.
 - **Tenant security:** every tenant-owned read and write must be scoped server-side; client-provided tenant IDs are never trusted as authorization.
 - **Authentication and roles:** establish the identity provider/session model and a route/action permission matrix before implementing protected business flows.
 - **Quality gates:** unit tests for pure business rules, API integration tests for authorization and persistence, and browser tests for the observed UI flows and responsive behavior.
-- **Deployment:** retain the existing static landing page until a separately testable application route/deployment has been selected.
+- **Deployment:** existing root landing page remains untouched; application scaffold currently lives under `app/`.
 
-No framework, database, authentication provider, payment provider, or API contract is confirmed by the inspection evidence. Confirm these before making irreversible platform decisions.
+No database, authentication provider, payment provider, or production API contract is confirmed by the inspection evidence. Treat stack choices as provisional until the deployment target is confirmed.
 
 ## 5. Domain areas identified in the evidence pack
 
@@ -60,7 +60,7 @@ The domain list is a coverage map only; it does not define a normalized schema o
 
 ## 6. Required gates before business logic
 
-- Obtain the canonical source repository and confirm the target deployment/runtime.
+- Confirm the canonical source repository and target deployment/runtime.
 - Define tenant isolation, roles, permissions, route ownership, and audit policy.
 - Define and review API contracts for every write path.
 - Obtain or design the database schema and migration strategy.
@@ -70,16 +70,27 @@ The domain list is a coverage map only; it does not define a normalized schema o
 - Resolve known discrepancies with controlled synthetic-data tests.
 - Add regression, accessibility, responsive, failure/retry, duplicate-submit, and permission tests.
 
-## 7. Phase exit criteria
+## 7. Current scaffold
+
+Added under `app/` on this branch:
+- React + TypeScript + Vite project configuration.
+- Responsive operations-shell layout with navigation, overview panel, module placeholders, and Phase 0 checklist.
+- Explicit “not connected” and no-live-data labels; no fabricated sales/orders figures.
+- Build and test scripts, plus local setup instructions in `app/README.md`.
+
+The existing root marketing site is unchanged. No API, database, authentication, tenant model, or real business mutation has been connected. Build/tests have **not** been executed in this environment, so the scaffold is not yet verified.
+
+## 8. Phase exit criteria
 
 Phase 0 is complete only when:
 - [x] Existing repository and reference-pack limits are recorded.
 - [x] Existing marketing page is protected from accidental replacement.
 - [x] Evidence classification and unresolved business-rule risks are documented.
+- [x] Initial application shell scaffolded on a separate branch.
 - [ ] Product owner confirms the intended app stack/deployment target, or explicitly accepts the provisional defaults.
-- [ ] The initial application shell and test harness are added on a separate implementation branch.
-- [ ] CI/build checks pass for the new application shell.
+- [ ] Build and test checks pass for the new application shell.
+- [ ] Typed API boundary, route-guard placeholder, and initial test harness are in place.
 
-## 8. Next implementation step
+## 9. Next implementation step
 
-After the stack/deployment gate is resolved, create the isolated application shell, shared layout/navigation, design tokens, route guards placeholder, typed API boundary, and test harness. Do not implement payment, stock posting, financial calculations, or durable order state until their contracts are specified.
+Verify the scaffold with a clean install/build, then add a typed API boundary, route-guard placeholder, and the first shell smoke test. Do not implement payment, stock posting, financial calculations, or durable order state until their contracts are specified.
